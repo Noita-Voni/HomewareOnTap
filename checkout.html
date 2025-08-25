@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Homeware On Tap</title>
+    <meta name="description" content="Complete your order - Quality homeware delivered to your door">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="assets/img/logo2.png" alt="Homeware On Tap" class="logo-image">
+                    <span class="logo-text">Homeware On Tap</span>
+                </div>
+                <nav class="checkout-nav">
+                    <a href="index.html" class="btn btn-secondary">← Back to Store</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="checkout-main">
+        <div class="container">
+            <h1 class="checkout-title">Checkout</h1>
+            
+            <div class="checkout-layout">
+                <!-- Shipping Form -->
+                <div class="checkout-form">
+                    <h2>Shipping Information</h2>
+                    <form id="checkout-form" class="shipping-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address1">Street Address *</label>
+                            <input type="text" id="address1" name="address1" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address2">Apartment, suite, etc. (optional)</label>
+                            <input type="text" id="address2" name="address2">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="province">Province *</label>
+                                <select id="province" name="province" required>
+                                    <option value="">Select Province</option>
+                                    <option value="eastern-cape">Eastern Cape</option>
+                                    <option value="free-state">Free State</option>
+                                    <option value="gauteng">Gauteng</option>
+                                    <option value="kwazulu-natal">KwaZulu-Natal</option>
+                                    <option value="limpopo">Limpopo</option>
+                                    <option value="mpumalanga">Mpumalanga</option>
+                                    <option value="northern-cape">Northern Cape</option>
+                                    <option value="north-west">North West</option>
+                                    <option value="western-cape">Western Cape</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="postalCode">Postal Code *</label>
+                                <input type="text" id="postalCode" name="postalCode" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">Delivery Notes (optional)</label>
+                            <textarea id="notes" name="notes" rows="3" placeholder="Special delivery instructions..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large">Proceed to Payment</button>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div class="summary-content">
+                        <div class="summary-items" id="summary-items">
+                            <!-- Order items will be rendered here -->
+                        </div>
+                        <div class="summary-empty" id="summary-empty" style="display: none;">
+                            <p>Your cart is empty</p>
+                            <a href="index.html" class="btn btn-secondary">Continue Shopping</a>
+                        </div>
+                        <div class="summary-totals" id="summary-totals">
+                            <div class="total-row">
+                                <span>Subtotal:</span>
+                                <span>R<span id="summary-subtotal">0</span></span>
+                            </div>
+                            <div class="total-row">
+                                <span>Shipping:</span>
+                                <span>R99</span>
+                            </div>
+                            <div class="total-row total-final">
+                                <span>Total:</span>
+                                <span>R<span id="summary-total">99</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Message Modal -->
+    <div class="modal" id="success-modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <h3>Order Submitted Successfully!</h3>
+            <p>Thank you for your order. You'll receive a confirmation email shortly.</p>
+            <p><strong>Note:</strong> This is a prototype. Payment integration with Stripe/PayFast/Yoco will be added here.</p>
+            <div class="modal-actions">
+                <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Render order summary from localStorage
+        function renderOrderSummary() {
+            const cart = JSON.parse(localStorage.getItem('hot_cart_v1') || '[]');
+            const summaryItems = document.getElementById('summary-items');
+            const summaryEmpty = document.getElementById('summary-empty');
+            const summaryTotals = document.getElementById('summary-totals');
+            const summarySubtotal = document.getElementById('summary-subtotal');
+            const summaryTotal = document.getElementById('summary-total');
+
+            if (cart.length === 0) {
+                summaryItems.style.display = 'none';
+                summaryTotals.style.display = 'none';
+                summaryEmpty.style.display = 'block';
+                return;
+            }
+
+            summaryEmpty.style.display = 'none';
+            summaryItems.style.display = 'block';
+            summaryTotals.style.display = 'block';
+
+            // Render items
+            summaryItems.innerHTML = cart.map(item => `
+                <div class="summary-item">
+                    <div class="item-info">
+                        <h4>${item.name}</h4>
+                        <p>Qty: ${item.qty}</p>
+                    </div>
+                    <div class="item-total">R${(item.price * item.qty).toLocaleString()}</div>
+                </div>
+            `).join('');
+
+            // Calculate totals
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const shipping = 99;
+            const total = subtotal + shipping;
+
+            summarySubtotal.textContent = subtotal.toLocaleString();
+            summaryTotal.textContent = total.toLocaleString();
+        }
+
+        // Handle form submission
+        document.getElementById('checkout-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show success modal
+            document.getElementById('success-modal').style.display = 'flex';
+            
+            // TODO: Integrate with payment processor (Stripe/PayFast/Yoco)
+            // This is where you would send the form data and cart contents
+            // to your payment processor and backend
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderOrderSummary();
+        });
+    </script>
+</body>
+</html>

@@ -16,9 +16,31 @@
                     <img src="assets/img/logo2.png" alt="Homeware On Tap" class="logo-image">
                     <span class="logo-text">Homeware On Tap</span>
                 </div>
-                <nav class="checkout-nav">
-                    <a href="index.html" class="btn btn-secondary">← Back to Store</a>
-                </nav>
+                
+                <div class="header-actions">
+                    <!-- Authentication Buttons -->
+                    <div class="auth-buttons" id="authButtons">
+                        <a href="login.html" class="btn btn-outline">Login</a>
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    </div>
+                    
+                    <!-- User Menu (hidden by default) -->
+                    <div class="user-menu" id="userMenu" style="display: none;">
+                        <button class="user-profile-btn" id="userProfileBtn">
+                            <span class="user-avatar">👤</span>
+                            <span class="user-name" id="userName">User</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#" class="dropdown-item">Profile</a>
+                            <a href="#" class="dropdown-item">Orders</a>
+                            <a href="#" class="dropdown-item" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                    
+                    <nav class="checkout-nav">
+                        <a href="index.html" class="btn btn-secondary">← Back to Store</a>
+                    </nav>
+                </div>
             </div>
         </div>
     </header>
@@ -201,6 +223,49 @@
         document.addEventListener('DOMContentLoaded', function() {
             renderOrderSummary();
         });
+        
+        // Authentication State Management
+        function checkAuthState() {
+            const authButtons = document.getElementById('authButtons');
+            const userMenu = document.getElementById('userMenu');
+            const userName = document.getElementById('userName');
+            const userData = localStorage.getItem('homewareUserData');
+            
+            if (userData) {
+                // User is logged in
+                const user = JSON.parse(userData);
+                authButtons.style.display = 'none';
+                userMenu.style.display = 'flex';
+                userName.textContent = user.firstName || 'User';
+            } else {
+                // User is not logged in
+                authButtons.style.display = 'flex';
+                userMenu.style.display = 'none';
+            }
+        }
+        
+        // User menu functionality
+        document.getElementById('userProfileBtn')?.addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.getElementById('userDropdown').classList.toggle('show');
+        });
+        
+        document.addEventListener('click', function() {
+            document.getElementById('userDropdown')?.classList.remove('show');
+        });
+        
+        document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('homewareUserData');
+                localStorage.removeItem('homewareUserLoggedIn');
+                checkAuthState();
+                alert('You have been logged out successfully! 🌿');
+            }
+        });
+        
+        // Initial auth state check
+        checkAuthState();
     </script>
 </body>
 </html>

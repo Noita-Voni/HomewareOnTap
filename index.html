@@ -30,6 +30,25 @@
 
                 <!-- Cart & Mobile Toggle -->
                 <div class="header-actions">
+                    <!-- Authentication Buttons -->
+                    <div class="auth-buttons" id="authButtons">
+                        <a href="login.html" class="btn btn-outline">Login</a>
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    </div>
+                    
+                    <!-- User Menu (hidden by default) -->
+                    <div class="user-menu" id="userMenu" style="display: none;">
+                        <button class="user-profile-btn" id="userProfileBtn">
+                            <span class="user-avatar">👤</span>
+                            <span class="user-name" id="userName">User</span>
+                        </button>
+                        <div class="user-dropdown" id="userDropdown">
+                            <a href="#" class="dropdown-item">Profile</a>
+                            <a href="#" class="dropdown-item">Orders</a>
+                            <a href="#" class="dropdown-item" id="logoutBtn">Logout</a>
+                        </div>
+                    </div>
+                    
                     <button class="cart-btn" data-cart-open aria-label="Open cart">
                         <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5-6M20 13v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m16 0V9a2 2 0 00-2-2H6a2 2 0 00-2-2v4"></path>
@@ -285,7 +304,7 @@
                 </div>
                 <div class="cart-actions">
                     <button class="btn btn-secondary btn-small" data-cart-clear>Clear Cart</button>
-                    <a href="checkout.html" class="btn btn-primary">Checkout</a>
+                    <button class="btn btn-primary" data-checkout-btn>Checkout</button>
                 </div>
             </div>
         </div>
@@ -294,5 +313,65 @@
     <!-- Scripts -->
     <script src="assets/js/script.js"></script>
     <script src="assets/js/cart.js"></script>
+    
+    <!-- Authentication State Management -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const authButtons = document.getElementById('authButtons');
+            const userMenu = document.getElementById('userMenu');
+            const userName = document.getElementById('userName');
+            const userProfileBtn = document.getElementById('userProfileBtn');
+            const userDropdown = document.getElementById('userDropdown');
+            const logoutBtn = document.getElementById('logoutBtn');
+            
+            // Check if user is logged in
+            function checkAuthState() {
+                const userData = localStorage.getItem('homewareUserData');
+                
+                if (userData) {
+                    // User is logged in
+                    const user = JSON.parse(userData);
+                    authButtons.style.display = 'none';
+                    userMenu.style.display = 'flex';
+                    userName.textContent = user.firstName || 'User';
+                } else {
+                    // User is not logged in
+                    authButtons.style.display = 'flex';
+                    userMenu.style.display = 'none';
+                }
+            }
+            
+            // Toggle user dropdown
+            userProfileBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                userDropdown.classList.toggle('show');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function() {
+                userDropdown.classList.remove('show');
+            });
+            
+            // Logout functionality
+            logoutBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    localStorage.removeItem('homewareUserData');
+                    localStorage.removeItem('homewareUserLoggedIn');
+                    checkAuthState();
+                    alert('You have been logged out successfully! 🌿');
+                }
+            });
+            
+            // Initial auth state check
+            checkAuthState();
+            
+            // Listen for storage changes (when user logs in/out in other tabs)
+            window.addEventListener('storage', checkAuthState);
+        });
+    </script>
+    
+    <!-- Authentication Script -->
+    <script src="assets/js/auth.js"></script>
 </body>
 </html>

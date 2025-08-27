@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Homeware On Tap</title>
+    <meta name="description" content="Create your account to start shopping premium homeware">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="assets/img/logo2.png" alt="Homeware On Tap" class="logo-image">
+                    <span class="logo-text">Homeware On Tap</span>
+                </div>
+                
+                <div class="header-actions">
+                    <!-- Authentication Buttons - Show login only on signup page -->
+                    <div class="auth-buttons">
+                        <a href="login.html" class="btn btn-outline">Login</a>
+                    </div>
+                    
+                    <nav class="signup-nav">
+                        <a href="index.html" class="btn btn-secondary">← Back to Store</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="signup-main">
+        <div class="container">
+            <div class="signup-layout">
+                <!-- Sign Up Form -->
+                <div class="signup-form-container">
+                    <div class="signup-header">
+                        <h1>Join Homeware On Tap 🌿</h1>
+                        <p>Create your account to start shopping our curated collection of premium homeware</p>
+                    </div>
+                    
+                    <form id="signup-form" class="signup-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password">Password *</label>
+                                <input type="password" id="password" name="password" required minlength="8">
+                                <small class="form-hint">Minimum 8 characters</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password *</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateOfBirth">Date of Birth</label>
+                            <input type="date" id="dateOfBirth" name="dateOfBirth">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address (Optional)</label>
+                            <input type="text" id="address" name="address" placeholder="Street address for faster checkout">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" name="city">
+                            </div>
+                            <div class="form-group">
+                                <label for="province">Province</label>
+                                <select id="province" name="province">
+                                    <option value="">Select Province</option>
+                                    <option value="eastern-cape">Eastern Cape</option>
+                                    <option value="free-state">Free State</option>
+                                    <option value="gauteng">Gauteng</option>
+                                    <option value="kwazulu-natal">KwaZulu-Natal</option>
+                                    <option value="limpopo">Limpopo</option>
+                                    <option value="mpumalanga">Mpumalanga</option>
+                                    <option value="northern-cape">Northern Cape</option>
+                                    <option value="north-west">North West</option>
+                                    <option value="western-cape">Western Cape</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="newsletter" name="newsletter" checked>
+                                <label for="newsletter">
+                                    🌿 Subscribe to our newsletter for exclusive offers and sustainable living tips
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">
+                                    I agree to the <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a> *
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-status" id="signup-status" aria-live="polite"></div>
+
+                        <button type="submit" class="btn btn-primary btn-large">Create Account 🌱</button>
+                    </form>
+
+                    <div class="signup-footer">
+                        <p>Already have an account? <a href="login.html" class="link" id="signin-link">Sign In</a></p>
+                    </div>
+                </div>
+
+                <!-- Benefits Section -->
+                <div class="signup-benefits">
+                    <h2>Why Create an Account? 🌿</h2>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🛒</div>
+                        <div class="benefit-content">
+                            <h3>Faster Checkout</h3>
+                            <p>Save your details for quick and easy future purchases</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💝</div>
+                        <div class="benefit-content">
+                            <h3>Exclusive Offers</h3>
+                            <p>Get access to member-only discounts and early access to new products</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📦</div>
+                        <div class="benefit-content">
+                            <h3>Order Tracking</h3>
+                            <p>Track your orders and view your purchase history</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🌱</div>
+                        <div class="benefit-content">
+                            <h3>Eco-Friendly Tips</h3>
+                            <p>Receive personalized suggestions for sustainable living</p>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎁</div>
+                        <div class="benefit-content">
+                            <h3>Birthday Surprises</h3>
+                            <p>Special birthday discounts and personalized gift recommendations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal" id="success-modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <h3>🌿 Welcome to Homeware On Tap!</h3>
+            <p>Your account has been created successfully. You can now start shopping our premium homeware collection.</p>
+            <div class="modal-actions">
+                <button class="btn btn-primary" id="continue-shopping">Continue Shopping</button>
+                <button class="btn btn-secondary" id="view-profile">View Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/script.js"></script>
+    <script>
+        // Sign-up form functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const signupForm = document.getElementById('signup-form');
+            const signupStatus = document.getElementById('signup-status');
+            const successModal = document.getElementById('success-modal');
+            const continueShoppingBtn = document.getElementById('continue-shopping');
+            const viewProfileBtn = document.getElementById('view-profile');
+            const signinLink = document.getElementById('signin-link');
+
+            // Form validation and submission
+            signupForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Clear previous status
+                signupStatus.textContent = '';
+                signupStatus.className = 'form-status';
+                
+                // Get form data
+                const formData = new FormData(signupForm);
+                const password = formData.get('password');
+                const confirmPassword = formData.get('confirmPassword');
+                
+                // Validate passwords match
+                if (password !== confirmPassword) {
+                    showStatus('Passwords do not match. Please try again.', 'error');
+                    return;
+                }
+                
+                // Validate password strength
+                if (password.length < 8) {
+                    showStatus('Password must be at least 8 characters long.', 'error');
+                    return;
+                }
+                
+                // Check if terms are accepted
+                if (!formData.get('terms')) {
+                    showStatus('Please accept the Terms of Service and Privacy Policy.', 'error');
+                    return;
+                }
+                
+                // Simulate account creation
+                const submitButton = signupForm.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                
+                submitButton.textContent = 'Creating Account...';
+                submitButton.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Store user data (in real app, this would be sent to server)
+                    const userData = {
+                        firstName: formData.get('firstName'),
+                        lastName: formData.get('lastName'),
+                        email: formData.get('email'),
+                        phone: formData.get('phone'),
+                        address: formData.get('address'),
+                        city: formData.get('city'),
+                        province: formData.get('province'),
+                        newsletter: formData.get('newsletter'),
+                        dateOfBirth: formData.get('dateOfBirth'),
+                        signupDate: new Date().toISOString()
+                    };
+                    
+                    // Store in localStorage (in real app, would be handled by backend)
+                    localStorage.setItem('homewareUserData', JSON.stringify(userData));
+                    localStorage.setItem('homewareUserLoggedIn', 'true');
+                    
+                    // Show success modal
+                    successModal.style.display = 'flex';
+                    
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                }, 2000);
+            });
+
+            // Modal actions
+            continueShoppingBtn.addEventListener('click', function() {
+                // Check if user came from cart or another page
+                const urlParams = new URLSearchParams(window.location.search);
+                const returnUrl = urlParams.get('return') || 'index.html';
+                window.location.href = returnUrl;
+            });
+
+            viewProfileBtn.addEventListener('click', function() {
+                // In a real app, this would go to a profile page
+                alert('Profile page coming soon! 🌿');
+                // Check if user came from cart or another page
+                const urlParams = new URLSearchParams(window.location.search);
+                const returnUrl = urlParams.get('return') || 'index.html';
+                window.location.href = returnUrl;
+            });
+
+            // Sign in link (placeholder)
+            signinLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Sign in page coming soon! For now, you can create an account. 🌿');
+            });
+
+            function showStatus(message, type) {
+                signupStatus.textContent = message;
+                signupStatus.className = `form-status ${type}`;
+            }
+
+            // Real-time password confirmation validation
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            
+            confirmPasswordInput.addEventListener('input', function() {
+                if (this.value && passwordInput.value !== this.value) {
+                    this.setCustomValidity('Passwords do not match');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+        });
+    </script>
+    
+    <!-- Authentication Script -->
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>

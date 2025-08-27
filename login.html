@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Homeware on Tap</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <img src="assets/img/logo2.png" alt="Homeware on Tap" class="logo">
+                </div>
+                
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#catalog">Shop</a>
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                
+                <div class="nav-actions">
+                    <!-- Authentication Buttons - Show signup only on login page -->
+                    <div class="auth-buttons">
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    </div>
+                    <div class="cart-icon" data-cart-toggle>
+                        <i class="cart-icon-svg"></i>
+                        <span class="cart-count" data-cart-count>0</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Login Page -->
+    <main class="login-page">
+        <div class="container">
+            <div class="login-container">
+                <!-- Left side - Login Form -->
+                <div class="login-form-section">
+                    <div class="login-header">
+                        <h1>Welcome Back! 🏠</h1>
+                        <p>Sign in to your Homeware on Tap account</p>
+                    </div>
+                    
+                    <form class="login-form" id="loginForm">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="rememberMe">
+                                <span class="checkmark"></span>
+                                Remember me
+                            </label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary login-btn">
+                            Sign In
+                        </button>
+                        
+                        <div class="login-divider">
+                            <span>Don't have an account?</span>
+                        </div>
+                        
+                        <a href="signup.html" class="btn-secondary signup-link">
+                            Create Account
+                        </a>
+                    </form>
+                </div>
+                
+                <!-- Right side - Benefits -->
+                <div class="login-benefits-section">
+                    <div class="benefits-content">
+                        <h2>Why Shop With Us? 🌟</h2>
+                        
+                        <div class="benefit-cards">
+                            <div class="benefit-card">
+                                <div class="benefit-icon">🚚</div>
+                                <h3>Free Delivery</h3>
+                                <p>Free shipping on orders over R500</p>
+                            </div>
+                            
+                            <div class="benefit-card">
+                                <div class="benefit-icon">💎</div>
+                                <h3>Premium Quality</h3>
+                                <p>Handpicked homeware items for your space</p>
+                            </div>
+                            
+                            <div class="benefit-card">
+                                <div class="benefit-icon">🔄</div>
+                                <h3>Easy Returns</h3>
+                                <p>30-day hassle-free return policy</p>
+                            </div>
+                            
+                            <div class="benefit-card">
+                                <div class="benefit-icon">🌿</div>
+                                <h3>Eco-Friendly</h3>
+                                <p>Sustainable and environmentally conscious products</p>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial">
+                            <blockquote>
+                                "The best homeware shopping experience I've ever had. Quality products and amazing service!"
+                            </blockquote>
+                            <cite>- Sarah K., Happy Customer</cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Success Modal -->
+    <div class="modal" id="loginSuccessModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome Back! 🎉</h2>
+            </div>
+            <div class="modal-body">
+                <p>You have successfully signed in to your account.</p>
+                <p>Redirecting you to continue shopping...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Drawer -->
+    <div class="cart-drawer" data-cart-drawer>
+        <div class="cart-overlay" data-cart-overlay></div>
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Shopping Cart 🛒</h3>
+                <button class="cart-close" data-cart-close>&times;</button>
+            </div>
+            
+            <div class="cart-items" data-cart-items>
+                <!-- Cart items will be populated by JavaScript -->
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <strong>Total: R<span data-cart-total>0.00</span></strong>
+                </div>
+                <div class="cart-actions">
+                    <button class="btn-secondary" data-cart-clear>Clear Cart</button>
+                    <button class="btn-primary" data-checkout-btn>Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const loginModal = document.getElementById('loginSuccessModal');
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData(loginForm);
+                const email = formData.get('email');
+                const password = formData.get('password');
+                
+                // Basic validation
+                if (!email || !password) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                // Check if user exists (in real app, this would be server-side)
+                const existingUserData = localStorage.getItem('homewareUserData');
+                if (existingUserData) {
+                    const userData = JSON.parse(existingUserData);
+                    
+                    if (userData.email === email) {
+                        // Update login status
+                        userData.lastLogin = new Date().toISOString();
+                        localStorage.setItem('homewareUserData', JSON.stringify(userData));
+                        
+                        // Show success modal
+                        loginModal.style.display = 'flex';
+                        
+                        // Redirect after 2 seconds
+                        setTimeout(() => {
+                            // Check if user came from cart
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const returnUrl = urlParams.get('return') || 'index.html';
+                            window.location.href = returnUrl;
+                        }, 2000);
+                    } else {
+                        alert('Invalid email or password');
+                    }
+                } else {
+                    alert('No account found with this email. Please sign up first.');
+                }
+            });
+        });
+    </script>
+    
+    <!-- Authentication Script -->
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>

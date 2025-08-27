@@ -36,6 +36,10 @@ class ShoppingCart {
                 this.clear();
             }
             
+            if (e.target.matches('[data-checkout-btn]')) {
+                this.handleCheckout();
+            }
+            
             if (e.target.matches('[data-add]')) {
                 this.handleQuickAdd(e.target);
             }
@@ -368,6 +372,36 @@ class ShoppingCart {
             isEmpty: this.items.length === 0
         };
     }
+    
+    /**
+     * Handle checkout button click
+     */
+    handleCheckout() {
+        // Check if cart is empty
+        if (this.items.length === 0) {
+            alert('Your cart is empty! Add some items before checkout.');
+            return;
+        }
+        
+        // Check if user is logged in
+        const userData = localStorage.getItem('homewareUserData');
+        if (!userData) {
+            // User not logged in, show options
+            const userChoice = confirm('You need to sign in to continue.\n\nClick OK to Sign Up (new users)\nClick Cancel to Sign In (existing users)');
+            
+            if (userChoice) {
+                // User wants to sign up
+                window.location.href = 'signup.html?return=checkout.html';
+            } else {
+                // User wants to sign in
+                window.location.href = 'login.html?return=checkout.html';
+            }
+            return;
+        }
+        
+        // User is logged in, proceed to checkout
+        window.location.href = 'checkout.html';
+    }
 }
 
 // Initialize cart when DOM is loaded
@@ -385,6 +419,7 @@ document.addEventListener('DOMContentLoaded', function() {
         subtotal: () => window.cart.subtotal(),
         clear: () => window.cart.clear(),
         getItems: () => window.cart.getItems(),
-        getSummary: () => window.cart.getSummary()
+        getSummary: () => window.cart.getSummary(),
+        checkout: () => window.cart.handleCheckout()
     };
 });

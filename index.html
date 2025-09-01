@@ -21,10 +21,9 @@
                 <!-- Desktop Navigation -->
                 <nav class="nav" data-nav>
                     <ul class="nav-list">
-                        <li><a href="#features" class="nav-link">Features</a></li>
-                        <li><a href="#catalog" class="nav-link">Catalog</a></li>
-                        <li><a href="#about" class="nav-link">About</a></li>
-                        <li><a href="#email-cta" class="btn btn-primary">Get Updates</a></li>
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                        <li><a href="products.html" class="nav-link">Products</a></li>
+                        <li><a href="why.html" class="nav-link">Why HomewareOnTap</a></li>
                     </ul>
                 </nav>
 
@@ -69,21 +68,24 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
+            <!-- Background Video -->
+            <video class="hero-background-video" autoplay muted loop playsinline>
+                <source src="assets/img/video1.mp4" type="video/mp4">
+            </video>
+            
+            <!-- Video Overlay -->
+            <div class="hero-overlay"></div>
+            
+            <!-- Hero Content -->
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
-                        <h1 class="hero-title">Homeware, on tap. 🌿</h1>
-                        <p class="hero-lead">Transform your living space with our carefully curated collection of quality homeware. From kitchen essentials to bedroom comfort, we deliver natural style and functionality straight to your door.</p>
+                        <h1 class="hero-title">Transform Your Home With Beautiful Decor</h1>
+                        <p class="hero-lead">Discover our collection of functional home essentials that turn your space into a haven.</p>
                         <div class="hero-actions">
                             <a href="#catalog" class="btn btn-primary">Explore Catalog</a>
-                            <a href="#features" class="btn btn-secondary">How it works</a>
+                            <a href="#features" class="btn btn-secondary btn-outline">How it works</a>
                         </div>
-                    </div>
-                    <div class="hero-image">
-                        <video class="hero-video" autoplay muted loop playsinline>
-                            <source src="assets/img/video1.mp4" type="video/mp4">
-                            <div class="image-placeholder" aria-label="Modern homeware collection showcase"></div>
-                        </video>
                     </div>
                 </div>
             </div>
@@ -142,16 +144,20 @@
                     </video>
                 </div>
                 <div class="products-grid">
-                    <div class="product-card" data-product data-id="1" data-name="Premium Cotton Bedding Set" data-price="1299">
-                        <div class="product-image" aria-label="Premium Cotton Bedding Set"></div>
+                    <div class="product-card" data-product data-id="1" data-name="Premium Knife Set with Wooden Block" data-price="1299">
+                        <div class="product-image">
+                            <img src="assets/img/knifes.png" alt="Premium Knife Set with Wooden Block" class="product-img">
+                        </div>
                         <div class="product-info">
-                            <h3 class="product-title">Premium Cotton Bedding Set</h3>
+                            <h3 class="product-title">Premium Knife Set with Wooden Block</h3>
                             <p class="product-price">R1,299</p>
                             <button class="btn btn-primary btn-small" data-add>Quick Add</button>
                         </div>
                     </div>
                     <div class="product-card" data-product data-id="2" data-name="Ceramic Dinnerware Collection" data-price="899">
-                        <div class="product-image" aria-label="Ceramic Dinnerware Collection"></div>
+                        <div class="product-image">
+                            <img src="assets/img/ceramicplates.png" alt="Ceramic Dinnerware Collection" class="product-img">
+                        </div>
                         <div class="product-info">
                             <h3 class="product-title">Ceramic Dinnerware Collection</h3>
                             <p class="product-price">R899</p>
@@ -159,7 +165,9 @@
                         </div>
                     </div>
                     <div class="product-card" data-product data-id="3" data-name="Stainless Steel Cookware Set" data-price="2499">
-                        <div class="product-image" aria-label="Stainless Steel Cookware Set"></div>
+                        <div class="product-image">
+                            <img src="assets/img/steelpots.png" alt="Stainless Steel Cookware Set" class="product-img">
+                        </div>
                         <div class="product-info">
                             <h3 class="product-title">Stainless Steel Cookware Set</h3>
                             <p class="product-price">R2,499</p>
@@ -167,7 +175,9 @@
                         </div>
                     </div>
                     <div class="product-card" data-product data-id="4" data-name="Bamboo Storage Baskets" data-price="449">
-                        <div class="product-image" aria-label="Bamboo Storage Baskets"></div>
+                        <div class="product-image">
+                            <img src="assets/img/bamboostorage.png" alt="Bamboo Storage Baskets" class="product-img">
+                        </div>
                         <div class="product-info">
                             <h3 class="product-title">Bamboo Storage Baskets</h3>
                             <p class="product-price">R449</p>
@@ -175,21 +185,35 @@
                         </div>
                     </div>
                     <div class="product-card" data-product data-id="5" data-name="Glass Kitchen Canisters" data-price="329">
-                        <div class="product-image" aria-label="Glass Kitchen Canisters"></div>
+                        <div class="product-image">
+                            <img src="assets/img/glassbottles.png" alt="Glass Kitchen Canisters" class="product-img">
+                        </div>
                         <div class="product-info">
                             <h3 class="product-title">Glass Kitchen Canisters</h3>
                             <p class="product-price">R329</p>
                             <button class="btn btn-primary btn-small" data-add>Quick Add</button>
                         </div>
                     </div>
-                    <div class="product-card" data-product data-id="6" data-name="Luxury Bath Towel Set" data-price="799">
-                        <div class="product-image" aria-label="Luxury Bath Towel Set"></div>
+                    <div class="product-card" data-product data-id="6" data-name="Mixing Bowl Set (Stainless Steel, nesting)" data-price="799">
+                        <div class="product-image">
+                            <img src="assets/img/steeljars.png" alt="Mixing Bowl Set (Stainless Steel, nesting)" class="product-img">
+                        </div>
                         <div class="product-info">
-                            <h3 class="product-title">Luxury Bath Towel Set</h3>
+                            <h3 class="product-title">Mixing Bowl Set (Stainless Steel, nesting)</h3>
                             <p class="product-price">R799</p>
                             <button class="btn btn-primary btn-small" data-add>Quick Add</button>
                         </div>
                     </div>
+                </div>
+                
+                <!-- More Products Button -->
+                <div class="catalog-actions">
+                    <a href="products.html" class="btn btn-secondary btn-large">
+                        View All Products
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-left: 0.5rem;">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
                 </div>
             </div>
         </section>

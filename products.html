@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Homeware On Tap</title>
+    <meta name="description" content="Browse our complete collection of quality homeware products">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/img/logo2.png" alt="Homeware On Tap" class="logo-image">
+                        <span class="logo-text">Homeware On Tap</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav" data-nav>
+                    <ul class="nav-list">
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                        <li><a href="products.html" class="nav-link">Products</a></li>
+                        <li><a href="why.html" class="nav-link">Why HomewareOnTap</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Cart & Mobile Toggle -->
+                <div class="header-actions">
+                    <!-- Authentication Buttons -->
+                    <div class="auth-buttons" id="authButtons">
+                        <a href="login.html" class="btn btn-outline">Login</a>
+                        <a href="signup.html" class="btn btn-primary">Sign Up</a>
+                    </div>
+                    
+                    <button class="cart-btn" data-cart-open aria-label="Open cart">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5-6M20 13v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m16 0V9a2 2 0 00-2-2H6a2 2 0 00-2-2v4"></path>
+                        </svg>
+                        <span class="cart-badge" data-cart-count>0</span>
+                    </button>
+                    <button class="mobile-toggle" data-mobile-toggle aria-label="Toggle mobile menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <div class="page-header-content">
+                    <h1>All Products</h1>
+                    <p>Discover our complete collection of quality homeware essentials</p>
+                    <nav class="breadcrumb">
+                        <a href="index.html">Home</a>
+                        <span>/</span>
+                        <span>Products</span>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Grid -->
+        <section class="products-section">
+            <div class="container">
+                <!-- Product Filters -->
+                <div class="product-filters">
+                    <h3>Filter Products</h3>
+                    <div class="filter-group">
+                        <label>Category:</label>
+                        <select id="categoryFilter">
+                            <option value="">All Categories</option>
+                            <option value="kitchen">Kitchen</option>
+                            <option value="dining">Dining</option>
+                            <option value="storage">Storage</option>
+                            <option value="cookware">Cookware</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Price Range:</label>
+                        <select id="priceFilter">
+                            <option value="">All Prices</option>
+                            <option value="0-500">R0 - R500</option>
+                            <option value="500-1000">R500 - R1,000</option>
+                            <option value="1000-2000">R1,000 - R2,000</option>
+                            <option value="2000+">R2,000+</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="all-products-grid">
+                    <!-- Kitchen Category -->
+                    <div class="product-card" data-category="kitchen" data-price="1299">
+                        <div class="product-image">
+                            <img src="assets/img/knifes.png" alt="Premium Knife Set with Wooden Block" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Premium Knife Set with Wooden Block</h3>
+                            <p class="product-category">Kitchen</p>
+                            <p class="product-price">R1,299</p>
+                            <button class="btn btn-primary btn-small" data-add>Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Dining Category -->
+                    <div class="product-card" data-category="dining" data-price="899">
+                        <div class="product-image">
+                            <img src="assets/img/ceramicplates.png" alt="Ceramic Dinnerware Collection" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Ceramic Dinnerware Collection</h3>
+                            <p class="product-category">Dining</p>
+                            <p class="product-price">R899</p>
+                            <button class="btn btn-primary btn-small" data-add>Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Cookware Category -->
+                    <div class="product-card" data-category="cookware" data-price="2499">
+                        <div class="product-image">
+                            <img src="assets/img/steelpots.png" alt="Stainless Steel Cookware Set" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Stainless Steel Cookware Set</h3>
+                            <p class="product-category">Cookware</p>
+                            <p class="product-price">R2,499</p>
+                            <button class="btn btn-primary btn-small" data-add>Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Storage Category -->
+                    <div class="product-card" data-category="storage" data-price="449">
+                        <div class="product-image">
+                            <img src="assets/img/bamboostorage.png" alt="Bamboo Storage Baskets" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Bamboo Storage Baskets</h3>
+                            <p class="product-category">Storage</p>
+                            <p class="product-price">R449</p>
+                            <button class="btn btn-primary btn-small" data-add>Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Kitchen Category -->
+                    <div class="product-card" data-category="kitchen" data-price="329">
+                        <div class="product-image">
+                            <img src="assets/img/glassbottles.png" alt="Glass Kitchen Canisters" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Glass Kitchen Canisters</h3>
+                            <p class="product-category">Kitchen</p>
+                            <p class="product-price">R329</p>
+                            <button class="btn btn-primary btn-small" data-add>Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Cookware Category -->
+                    <div class="product-card" data-category="cookware" data-price="799">
+                        <div class="product-image">
+                            <img src="assets/img/steeljars.png" alt="Mixing Bowl Set (Stainless Steel, nesting)" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">Mixing Bowl Set (Stainless Steel, nesting)</h3>
+                            <p class="product-category">Cookware</p>
+                            <p class="product-price">R799</p>
+                            <button class="btn btn-primary btn-small" data-add>Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <!-- Additional Products (placeholders for now) -->
+                    <div class="product-card" data-category="dining" data-price="599">
+                        <div class="product-image" aria-label="Elegant Serving Tray Set"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">Elegant Serving Tray Set</h3>
+                            <p class="product-category">Dining</p>
+                            <p class="product-price">R599</p>
+                            <button class="btn btn-primary btn-small" data-add>Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="kitchen" data-price="399">
+                        <div class="product-image" aria-label="Wooden Cutting Board Collection"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">Wooden Cutting Board Collection</h3>
+                            <p class="product-category">Kitchen</p>
+                            <p class="product-price">R399</p>
+                            <button class="btn btn-primary btn-small" data-add>Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="storage" data-price="299">
+                        <div class="product-image" aria-label="Modern Spice Rack Organizer"></div>
+                        <div class="product-info">
+                            <h3 class="product-title">Modern Spice Rack Organizer</h3>
+                            <p class="product-category">Storage</p>
+                            <p class="product-price">R299</p>
+                            <button class="btn btn-primary btn-small" data-add>Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Homeware On Tap</h3>
+                    <p>Quality homeware delivered to your door. Transform your living space with our curated collection.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#" onclick="filterProducts('kitchen')">Kitchen</a></li>
+                        <li><a href="#" onclick="filterProducts('dining')">Dining</a></li>
+                        <li><a href="#" onclick="filterProducts('storage')">Storage</a></li>
+                        <li><a href="#" onclick="filterProducts('cookware')">Cookware</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">📘</a>
+                        <a href="#" aria-label="Instagram">📷</a>
+                        <a href="#" aria-label="Twitter">🐦</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Homeware On Tap. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/auth.js"></script>
+    
+    <!-- Products Page Script -->
+    <script>
+        function filterProducts(category) {
+            const products = document.querySelectorAll('.product-card');
+            const categoryFilter = document.getElementById('categoryFilter');
+            
+            if (categoryFilter) {
+                categoryFilter.value = category;
+            }
+            
+            products.forEach(product => {
+                if (category === '' || product.dataset.category === category) {
+                    product.style.display = 'block';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+
+        function filterByPrice(priceRange) {
+            const products = document.querySelectorAll('.product-card');
+            
+            products.forEach(product => {
+                const price = parseInt(product.dataset.price);
+                let show = true;
+                
+                if (priceRange === '0-500' && price > 500) show = false;
+                if (priceRange === '500-1000' && (price < 500 || price > 1000)) show = false;
+                if (priceRange === '1000-2000' && (price < 1000 || price > 2000)) show = false;
+                if (priceRange === '2000+' && price < 2000) show = false;
+                
+                product.style.display = show ? 'block' : 'none';
+            });
+        }
+
+        // Initialize filters
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryFilter = document.getElementById('categoryFilter');
+            const priceFilter = document.getElementById('priceFilter');
+            
+            if (categoryFilter) {
+                categoryFilter.addEventListener('change', function() {
+                    filterProducts(this.value);
+                });
+            }
+            
+            if (priceFilter) {
+                priceFilter.addEventListener('change', function() {
+                    filterByPrice(this.value);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -81,10 +81,10 @@ function loadAdminMetrics() {
 
 function updateRevenueMetric() {
     const revenueElement = document.querySelector('.metric-card h3');
-    if (revenueElement && revenueElement.textContent.includes('$')) {
+    if (revenueElement && revenueElement.textContent.includes('R')) {
         // Simulate real-time revenue updates
         const currentRevenue = 12450;
-        const formatted = '$' + currentRevenue.toLocaleString();
+        const formatted = 'R' + currentRevenue.toLocaleString();
         revenueElement.textContent = formatted;
     }
 }
@@ -148,8 +148,8 @@ function updateStockAlerts(lowStockProducts) {
     if (existingAlert) {
         const alertContent = existingAlert.querySelector('.alert-content p');
         if (alertContent) {
-            const productNames = lowStockProducts.map(p => `${p.name}: ${p.stock} units`).join(', ');
-            alertContent.textContent = `Low stock items: ${productNames}`;
+            const productNames = lowStockProducts.map(p => `R{p.name}: R{p.stock} units`).join(', ');
+            alertContent.textContent = `Low stock items: R{productNames}`;
         }
     }
 }
@@ -184,7 +184,7 @@ function updateOrderStatus(row, statusElement) {
     
     if (newStatus !== currentStatus) {
         statusElement.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
-        statusElement.className = `status status-${newStatus}`;
+        statusElement.className = `status status-R{newStatus}`;
         
         // Add animation
         statusElement.style.animation = 'pulse 0.5s ease-in-out';
@@ -203,40 +203,40 @@ function showOrderManagementModal(orderId) {
         <div class="admin-modal-overlay" onclick="closeAdminModal()">
             <div class="admin-modal" onclick="event.stopPropagation()">
                 <div class="modal-header">
-                    <h3>Order Management - ${orderId}</h3>
+                    <h3>Order Management - R{orderId}</h3>
                     <button onclick="closeAdminModal()" class="modal-close">&times;</button>
                 </div>
                 <div class="modal-content">
                     <div class="order-details-admin">
                         <div class="detail-section">
                             <h4>Customer Information</h4>
-                            <p><strong>Name:</strong> ${order.customerName}</p>
-                            <p><strong>Email:</strong> ${order.email}</p>
-                            <p><strong>Address:</strong> ${order.address}</p>
+                            <p><strong>Name:</strong> R{order.customerName}</p>
+                            <p><strong>Email:</strong> R{order.email}</p>
+                            <p><strong>Address:</strong> R{order.address}</p>
                         </div>
                         <div class="detail-section">
                             <h4>Order Information</h4>
-                            <p><strong>Date:</strong> ${formatDate(order.date)}</p>
-                            <p><strong>Status:</strong> ${capitalizeFirst(order.status)}</p>
-                            <p><strong>Total:</strong> $${order.total.toFixed(2)}</p>
+                            <p><strong>Date:</strong> R{formatDate(order.date)}</p>
+                            <p><strong>Status:</strong> R{capitalizeFirst(order.status)}</p>
+                            <p><strong>Total:</strong> RR{order.total.toFixed(2)}</p>
                         </div>
                         <div class="detail-section">
                             <h4>Items</h4>
-                            ${order.items.map(item => `
+                            R{order.items.map(item => `
                                 <div class="item-row">
-                                    <span>${item.name}</span>
-                                    <span>Qty: ${item.quantity}</span>
-                                    <span>$${item.price.toFixed(2)}</span>
+                                    <span>R{item.name}</span>
+                                    <span>Qty: R{item.quantity}</span>
+                                    <span>RR{item.price.toFixed(2)}</span>
                                 </div>
                             `).join('')}
                         </div>
                         <div class="detail-section">
                             <h4>Actions</h4>
                             <div class="admin-actions">
-                                <button class="btn btn-primary" onclick="updateOrderStatus('${orderId}', 'processing')">Mark Processing</button>
-                                <button class="btn btn-primary" onclick="updateOrderStatus('${orderId}', 'shipped')">Mark Shipped</button>
-                                <button class="btn btn-success" onclick="updateOrderStatus('${orderId}', 'delivered')">Mark Delivered</button>
-                                <button class="btn btn-secondary" onclick="contactCustomer('${order.email}')">Contact Customer</button>
+                                <button class="btn btn-primary" onclick="updateOrderStatus('R{orderId}', 'processing')">Mark Processing</button>
+                                <button class="btn btn-primary" onclick="updateOrderStatus('R{orderId}', 'shipped')">Mark Shipped</button>
+                                <button class="btn btn-success" onclick="updateOrderStatus('R{orderId}', 'delivered')">Mark Delivered</button>
+                                <button class="btn btn-secondary" onclick="contactCustomer('R{order.email}')">Contact Customer</button>
                             </div>
                         </div>
                     </div>
@@ -262,7 +262,7 @@ function updateOrderStatus(orderId, newStatus) {
         order.status = newStatus;
         
         // Update UI
-        const orderRow = document.querySelector(`[data-order-id="${orderId}"]`) || 
+        const orderRow = document.querySelector(`[data-order-id="R{orderId}"]`) || 
                         Array.from(document.querySelectorAll('.order-row')).find(row => 
                             row.querySelector('.order-id')?.textContent === orderId
                         );
@@ -271,11 +271,11 @@ function updateOrderStatus(orderId, newStatus) {
             const statusElement = orderRow.querySelector('.status');
             if (statusElement) {
                 statusElement.textContent = capitalizeFirst(newStatus);
-                statusElement.className = `status status-${newStatus}`;
+                statusElement.className = `status status-R{newStatus}`;
             }
         }
         
-        showAdminNotification(`Order ${orderId} status updated to ${newStatus}`, 'success');
+        showAdminNotification(`Order R{orderId} status updated to R{newStatus}`, 'success');
         closeAdminModal();
     }
 }
@@ -284,23 +284,23 @@ function contactCustomer(email) {
     const subject = encodeURIComponent('Regarding your Homeware On Tap order');
     const body = encodeURIComponent('Hello,\n\nI hope this message finds you well. I am contacting you regarding your recent order.\n\nBest regards,\nHomeware On Tap Team');
     
-    const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
+    const mailtoLink = `mailto:R{email}?subject=R{subject}&body=R{body}`;
     window.open(mailtoLink, '_blank');
     
-    showAdminNotification(`Email client opened for ${email}`, 'info');
+    showAdminNotification(`Email client opened for R{email}`, 'info');
 }
 
 function showMetricDetails(metricType) {
     let details = '';
     
     switch (metricType.toLowerCase()) {
-        case '$12,450':
+        case 'R12,450':
         case 'total revenue':
-            details = `Revenue Breakdown:\n\n- Last 7 days: $2,450\n- Last 30 days: $8,900\n- This month: $12,450\n- Growth: +12.3%\n\nTop performing products:\n1. Coffee Mugs Set - $3,200\n2. Storage Jars - $2,800\n3. Glass Bottles - $2,100`;
+            details = `Revenue Breakdown:\n\n- Last 7 days: R2,450\n- Last 30 days: R8,900\n- This month: R12,450\n- Growth: +12.3%\n\nTop performing products:\n1. Coffee Mugs Set - R3,200\n2. Storage Jars - R2,800\n3. Glass Bottles - R2,100`;
             break;
         case '156':
         case 'total orders':
-            details = `Order Statistics:\n\n- Pending: 5 orders\n- Processing: 12 orders\n- Shipped: 23 orders\n- Delivered: 116 orders\n\nAverage order value: $79.80\nRepeat customer rate: 34%`;
+            details = `Order Statistics:\n\n- Pending: 5 orders\n- Processing: 12 orders\n- Shipped: 23 orders\n- Delivered: 116 orders\n\nAverage order value: R79.80\nRepeat customer rate: 34%`;
             break;
         case '89':
         case 'total customers':
@@ -319,13 +319,13 @@ function showMetricDetails(metricType) {
 
 function showAdminNotification(message, type = 'info') {
     const notification = document.createElement('div');
-    notification.className = `admin-notification admin-notification-${type}`;
+    notification.className = `admin-notification admin-notification-R{type}`;
     notification.innerHTML = `
         <div class="notification-content">
             <span class="notification-icon">
-                ${type === 'success' ? '✓' : type === 'warning' ? '⚠' : 'ℹ'}
+                R{type === 'success' ? '✓' : type === 'warning' ? '⚠' : 'ℹ'}
             </span>
-            <span class="notification-message">${message}</span>
+            <span class="notification-message">R{message}</span>
         </div>
     `;
     
@@ -333,7 +333,7 @@ function showAdminNotification(message, type = 'info') {
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${getNotificationColor(type)};
+        background: R{getNotificationColor(type)};
         color: white;
         padding: 15px 20px;
         border-radius: 6px;
@@ -406,7 +406,7 @@ function exportData(type) {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     
-    showAdminNotification(`${type} data exported successfully`, 'success');
+    showAdminNotification(`R{type} data exported successfully`, 'success');
 }
 
 function importData() {
@@ -447,9 +447,9 @@ function generateReportData(type, period) {
     switch (type) {
         case 'sales':
             return {
-                totalSales: '$12,450',
+                totalSales: 'R12,450',
                 orderCount: 156,
-                avgOrderValue: '$79.80',
+                avgOrderValue: 'R79.80',
                 growth: '+12.3%'
             };
         case 'inventory':
@@ -457,14 +457,14 @@ function generateReportData(type, period) {
                 totalProducts: 24,
                 lowStock: 3,
                 outOfStock: 0,
-                totalValue: '$8,960'
+                totalValue: 'R8,960'
             };
         case 'customers':
             return {
                 totalCustomers: 89,
                 newCustomers: 12,
                 retentionRate: '78%',
-                avgLifetimeValue: '$245'
+                avgLifetimeValue: 'R245'
             };
         default:
             return {};
@@ -476,20 +476,20 @@ function showReportModal(type, period, data) {
         <div class="admin-modal-overlay" onclick="closeAdminModal()">
             <div class="admin-modal report-modal" onclick="event.stopPropagation()">
                 <div class="modal-header">
-                    <h3>${capitalizeFirst(type)} Report - ${capitalizeFirst(period)}</h3>
+                    <h3>R{capitalizeFirst(type)} Report - R{capitalizeFirst(period)}</h3>
                     <button onclick="closeAdminModal()" class="modal-close">&times;</button>
                 </div>
                 <div class="modal-content">
                     <div class="report-content">
-                        ${Object.entries(data).map(([key, value]) => `
+                        R{Object.entries(data).map(([key, value]) => `
                             <div class="report-item">
-                                <span class="report-label">${key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}:</span>
-                                <span class="report-value">${value}</span>
+                                <span class="report-label">R{key.replace(/([A-Z])/g, ' R1').replace(/^./, str => str.toUpperCase())}:</span>
+                                <span class="report-value">R{value}</span>
                             </div>
                         `).join('')}
                     </div>
                     <div class="report-actions">
-                        <button class="btn btn-primary" onclick="exportReport('${type}', '${period}')">Export Report</button>
+                        <button class="btn btn-primary" onclick="exportReport('R{type}', 'R{period}')">Export Report</button>
                         <button class="btn btn-secondary" onclick="printReport()">Print Report</button>
                     </div>
                 </div>
@@ -501,7 +501,7 @@ function showReportModal(type, period, data) {
 }
 
 function exportReport(type, period) {
-    showAdminNotification(`${type} report for ${period} exported`, 'success');
+    showAdminNotification(`R{type} report for R{period} exported`, 'success');
     closeAdminModal();
 }
 

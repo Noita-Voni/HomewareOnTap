@@ -48,5 +48,5 @@ CREATE INDEX idx_expires_at ON user_sessions(expires_at);
 
 -- Insert some sample data (optional - for testing)
 INSERT INTO users (first_name, last_name, email, phone, password_hash, city, province) VALUES 
-('John', 'Doe', 'john.doe@example.com', '+27123456789', '$2b$10$sample_hash_here', 'Johannesburg', 'gauteng'),
-('Jane', 'Smith', 'jane.smith@example.com', '+27987654321', '$2b$10$sample_hash_here', 'Cape Town', 'western-cape');
+('John', 'Doe', 'john.doe@example.com', '+27123456789', 'R2bR10Rsample_hash_here', 'Johannesburg', 'gauteng'),
+('Jane', 'Smith', 'jane.smith@example.com', '+27987654321', 'R2bR10Rsample_hash_here', 'Cape Town', 'western-cape');

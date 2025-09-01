@@ -37,7 +37,7 @@ const signupValidation = [
         .withMessage('Please provide a valid email address'),
     
     body('phone')
-        .matches(/^[\+]?[0-9\-\(\)\s]+$/)
+        .matches(/^[\+]?[0-9\-\(\)\s]+R/)
         .withMessage('Please provide a valid phone number'),
     
     body('password')
@@ -205,7 +205,7 @@ router.get('/profile', authenticateToken, async (req, res) => {
 router.put('/profile', authenticateToken, [
     body('firstName').optional().trim().isLength({ min: 1, max: 50 }),
     body('lastName').optional().trim().isLength({ min: 1, max: 50 }),
-    body('phone').optional().matches(/^[\+]?[0-9\-\(\)\s]+$/),
+    body('phone').optional().matches(/^[\+]?[0-9\-\(\)\s]+R/),
     body('dateOfBirth').optional().isISO8601(),
     body('address').optional().isLength({ max: 255 }),
     body('city').optional().isLength({ max: 100 }),

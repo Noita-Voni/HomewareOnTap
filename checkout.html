@@ -191,10 +191,10 @@
             summaryItems.innerHTML = cart.map(item => `
                 <div class="summary-item">
                     <div class="item-info">
-                        <h4>${item.name}</h4>
-                        <p>Qty: ${item.qty}</p>
+                        <h4>R{item.name}</h4>
+                        <p>Qty: R{item.qty}</p>
                     </div>
-                    <div class="item-total">R${(item.price * item.qty).toLocaleString()}</div>
+                    <div class="item-total">RR{(item.price * item.qty).toLocaleString()}</div>
                 </div>
             `).join('');
 

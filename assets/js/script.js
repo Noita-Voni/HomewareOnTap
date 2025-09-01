@@ -101,11 +101,11 @@ function initEmailForm() {
 
     function showEmailStatus(message, type) {
         emailStatus.textContent = message;
-        emailStatus.className = `form-status ${type}`;
+        emailStatus.className = `form-status R{type}`;
     }
 
     function isValidEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+R/;
         return emailRegex.test(email);
     }
 }
@@ -241,7 +241,7 @@ function throttle(func, limit) {
 
 // Show notification (can be extended for toast notifications)
 function showNotification(message, type = 'info', duration = 3000) {
-    console.log(`${type.toUpperCase()}: ${message}`);
+    console.log(`R{type.toUpperCase()}: R{message}`);
     // TODO: Implement toast notification system if needed
 }
 

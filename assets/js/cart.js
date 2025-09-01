@@ -234,26 +234,26 @@ class ShoppingCart {
         return `
             <div class="cart-item">
                 <div class="cart-item-info">
-                    <div class="cart-item-name">${this.escapeHtml(item.name)}</div>
+                    <div class="cart-item-name">R{this.escapeHtml(item.name)}</div>
                     <div class="cart-item-controls">
                         <input 
                             type="number" 
                             min="1" 
                             max="99"
-                            value="${item.qty}"
+                            value="R{item.qty}"
                             class="cart-item-qty"
-                            data-item-id="${item.id}"
-                            aria-label="Quantity for ${this.escapeHtml(item.name)}"
+                            data-item-id="R{item.id}"
+                            aria-label="Quantity for R{this.escapeHtml(item.name)}"
                         >
                         <button 
                             class="cart-item-remove"
-                            data-item-id="${item.id}"
-                            aria-label="Remove ${this.escapeHtml(item.name)} from cart"
+                            data-item-id="R{item.id}"
+                            aria-label="Remove R{this.escapeHtml(item.name)} from cart"
                             title="Remove item"
                         >×</button>
                     </div>
                 </div>
-                <div class="cart-item-total">R${this.formatNumber(lineTotal)}</div>
+                <div class="cart-item-total">RR{this.formatNumber(lineTotal)}</div>
             </div>
         `;
     }
@@ -292,7 +292,7 @@ class ShoppingCart {
      */
     showAddedFeedback(itemName) {
         // Simple console feedback - can be enhanced with toast notifications
-        console.log(`Added "${itemName}" to cart`);
+        console.log(`Added "R{itemName}" to cart`);
         
         // Optional: Show a brief animation or notification
         // This could be enhanced with a toast notification system

@@ -137,7 +137,7 @@ class User {
 
         Object.keys(updateData).forEach(key => {
             if (allowedFields.includes(key) && updateData[key] !== undefined) {
-                updateFields.push(`${key} = ?`);
+                updateFields.push(`R{key} = ?`);
                 values.push(updateData[key]);
             }
         });
@@ -147,7 +147,7 @@ class User {
         }
 
         values.push(this.id);
-        const sql = `UPDATE users SET ${updateFields.join(', ')}, updated_at = NOW() WHERE id = ?`;
+        const sql = `UPDATE users SET R{updateFields.join(', ')}, updated_at = NOW() WHERE id = ?`;
         
         await db.query(sql, values);
         return await User.findById(this.id);

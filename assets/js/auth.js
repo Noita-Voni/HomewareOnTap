@@ -123,7 +123,7 @@ class AuthManager {
             }
 
             // Send signup request
-            const response = await fetch(`${this.apiUrl}/signup`, {
+            const response = await fetch(`R{this.apiUrl}/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -197,7 +197,7 @@ class AuthManager {
                 this.setAuthData('mock-token-' + Date.now(), authResult.user);
                 
                 // Show success message
-                this.showSuccessMessage(`Welcome back, ${authResult.user.name}! 🏠`);
+                this.showSuccessMessage(`Welcome back, R{authResult.user.name}! 🏠`);
                 
                 // Role-based redirect
                 setTimeout(() => {
@@ -222,10 +222,10 @@ class AuthManager {
         try {
             // Send logout request if we have a token
             if (this.token) {
-                await fetch(`${this.apiUrl}/logout`, {
+                await fetch(`R{this.apiUrl}/logout`, {
                     method: 'POST',
                     headers: {
-                        'Authorization': `Bearer ${this.token}`,
+                        'Authorization': `Bearer R{this.token}`,
                         'Content-Type': 'application/json'
                     }
                 });
@@ -255,7 +255,7 @@ class AuthManager {
         if (!data.password) errors.push({ field: 'password', message: 'Password is required' });
 
         // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+R/;
         if (data.email && !emailRegex.test(data.email)) {
             errors.push({ field: 'email', message: 'Please enter a valid email address' });
         }
@@ -298,7 +298,7 @@ class AuthManager {
         if (this.isAuthenticated()) {
             // User is logged in
             authButtons.innerHTML = `
-                <span class="user-greeting">Hello, ${this.user.firstName}!</span>
+                <span class="user-greeting">Hello, R{this.user.firstName}!</span>
                 <button class="btn btn-outline" data-logout>Logout</button>
             `;
             
@@ -369,7 +369,7 @@ class AuthManager {
             main.insertBefore(messageEl, main.firstChild);
         }
 
-        messageEl.className = `auth-message ${type}`;
+        messageEl.className = `auth-message R{type}`;
         messageEl.textContent = message;
         messageEl.style.display = 'block';
 
@@ -392,7 +392,7 @@ class AuthManager {
 
     showFormErrors(form, errors) {
         errors.forEach(error => {
-            const field = form.querySelector(`[name="${error.field}"]`);
+            const field = form.querySelector(`[name="R{error.field}"]`);
             if (field) {
                 field.classList.add('error');
                 

@@ -172,7 +172,7 @@ function updateDashboardGreeting(user) {
     if (greetingElement) {
         const userData = mockData.users[user.email] || user;
         const greeting = getTimeBasedGreeting();
-        greetingElement.textContent = `${greeting}, ${userData.name || user.email}!`;
+        greetingElement.textContent = `R{greeting}, R{userData.name || user.email}!`;
     }
 }
 
@@ -218,27 +218,27 @@ function loadUserOrders(userEmail) {
         <div class="order-item">
             <div class="order-header">
                 <div class="order-info">
-                    <h4>Order ${order.id}</h4>
-                    <p class="order-date">${formatDate(order.date)}</p>
+                    <h4>Order R{order.id}</h4>
+                    <p class="order-date">R{formatDate(order.date)}</p>
                 </div>
                 <div class="order-status">
-                    <span class="status-badge status-${order.status}">${capitalizeFirst(order.status)}</span>
+                    <span class="status-badge status-R{order.status}">R{capitalizeFirst(order.status)}</span>
                 </div>
             </div>
             <div class="order-details">
                 <div class="order-items">
-                    ${order.items.map(item => `
+                    R{order.items.map(item => `
                         <div class="order-item-detail">
-                            <span>${item.name} (x${item.quantity})</span>
-                            <span>$${item.price.toFixed(2)}</span>
+                            <span>R{item.name} (xR{item.quantity})</span>
+                            <span>RR{item.price.toFixed(2)}</span>
                         </div>
                     `).join('')}
                 </div>
                 <div class="order-total">
-                    <strong>Total: $${order.total.toFixed(2)}</strong>
+                    <strong>Total: RR{order.total.toFixed(2)}</strong>
                 </div>
-                ${order.tracking ? `<div class="order-tracking">
-                    <p>Tracking: <strong>${order.tracking}</strong></p>
+                R{order.tracking ? `<div class="order-tracking">
+                    <p>Tracking: <strong>R{order.tracking}</strong></p>
                 </div>` : ''}
             </div>
         </div>
@@ -265,7 +265,7 @@ function loadUserProfile(userEmail) {
     if (profileElements.userAddress) profileElements.userAddress.textContent = userData.address;
     if (profileElements.userJoined) profileElements.userJoined.textContent = formatDate(userData.joined);
     if (profileElements.userOrders) profileElements.userOrders.textContent = userData.orders;
-    if (profileElements.userSpent) profileElements.userSpent.textContent = `$${userData.totalSpent.toFixed(2)}`;
+    if (profileElements.userSpent) profileElements.userSpent.textContent = `RR{userData.totalSpent.toFixed(2)}`;
 }
 
 function loadRecommendedProducts() {
@@ -276,11 +276,11 @@ function loadRecommendedProducts() {
     
     recommendationsContainer.innerHTML = recommendations.map(product => `
         <div class="recommendation-item">
-            <img src="${product.image}" alt="${product.name}" class="recommendation-image">
+            <img src="R{product.image}" alt="R{product.name}" class="recommendation-image">
             <div class="recommendation-info">
-                <h4>${product.name}</h4>
-                <p class="price">$${product.price.toFixed(2)}</p>
-                <button class="btn btn-sm btn-primary" onclick="addToCart('${product.id}')">Add to Cart</button>
+                <h4>R{product.name}</h4>
+                <p class="price">RR{product.price.toFixed(2)}</p>
+                <button class="btn btn-sm btn-primary" onclick="addToCart('R{product.id}')">Add to Cart</button>
             </div>
         </div>
     `).join('');
@@ -298,7 +298,7 @@ function showOrderDetails(orderId) {
     const order = mockData.orders.find(o => o.id === orderId);
     if (!order) return;
 
-    alert(`Order Details for ${orderId}:\n\nStatus: ${order.status}\nTotal: $${order.total.toFixed(2)}\nItems: ${order.items.length}\n\nThis would open a detailed view in a real application.`);
+    alert(`Order Details for R{orderId}:\n\nStatus: R{order.status}\nTotal: RR{order.total.toFixed(2)}\nItems: R{order.items.length}\n\nThis would open a detailed view in a real application.`);
 }
 
 function reorderItems(orderId) {
@@ -310,7 +310,7 @@ function reorderItems(orderId) {
         addToCart(item.name, item.quantity);
     });
     
-    alert(`${order.items.length} items from order ${orderId} have been added to your cart!`);
+    alert(`R{order.items.length} items from order R{orderId} have been added to your cart!`);
 }
 
 function trackOrder(orderId) {
@@ -318,7 +318,7 @@ function trackOrder(orderId) {
     if (!order) return;
 
     if (order.tracking) {
-        alert(`Tracking Number: ${order.tracking}\n\nStatus: ${capitalizeFirst(order.status)}\n\nThis would open the carrier's tracking page in a real application.`);
+        alert(`Tracking Number: R{order.tracking}\n\nStatus: R{capitalizeFirst(order.status)}\n\nThis would open the carrier's tracking page in a real application.`);
     } else {
         alert('Tracking information not yet available for this order.');
     }
@@ -338,7 +338,7 @@ function viewOrderHistory() {
 
 function addToCart(productId, quantity = 1) {
     // Simulate adding to cart
-    console.log(`Added ${quantity} of product ${productId} to cart`);
+    console.log(`Added R{quantity} of product R{productId} to cart`);
     
     // Update cart count if element exists
     const cartCount = document.querySelector('.cart-count');
@@ -370,25 +370,25 @@ function showAddProduct() {
 
 function showProductList() {
     const products = mockData.products;
-    const productList = products.map(p => `${p.name} - $${p.price} (Stock: ${p.stock})`).join('\n');
-    alert(`Current Products:\n\n${productList}\n\nThis would show an editable table in a real application.`);
+    const productList = products.map(p => `R{p.name} - RR{p.price} (Stock: R{p.stock})`).join('\n');
+    alert(`Current Products:\n\nR{productList}\n\nThis would show an editable table in a real application.`);
 }
 
 function showInventory() {
     const lowStock = mockData.products.filter(p => p.stock < 10);
-    const lowStockList = lowStock.map(p => `${p.name}: ${p.stock} remaining`).join('\n');
-    alert(`Inventory Status:\n\n${lowStockList || 'All products are well stocked!'}\n\nThis would show detailed inventory management in a real application.`);
+    const lowStockList = lowStock.map(p => `R{p.name}: R{p.stock} remaining`).join('\n');
+    alert(`Inventory Status:\n\nR{lowStockList || 'All products are well stocked!'}\n\nThis would show detailed inventory management in a real application.`);
 }
 
 function showCategories() {
     const categories = [...new Set(mockData.products.map(p => p.category))];
-    alert(`Product Categories:\n\n${categories.join('\n')}\n\nThis would show category management with add/edit/delete options in a real application.`);
+    alert(`Product Categories:\n\nR{categories.join('\n')}\n\nThis would show category management with add/edit/delete options in a real application.`);
 }
 
 function showCustomers() {
     const customers = Object.values(mockData.users).filter(u => u.role === 'buyer');
-    const customerList = customers.map(c => `${c.name} (${c.email}) - ${c.orders} orders`).join('\n');
-    alert(`Customers:\n\n${customerList}\n\nThis would show detailed customer profiles in a real application.`);
+    const customerList = customers.map(c => `R{c.name} (R{c.email}) - R{c.orders} orders`).join('\n');
+    alert(`Customers:\n\nR{customerList}\n\nThis would show detailed customer profiles in a real application.`);
 }
 
 function showReports() {
@@ -400,7 +400,7 @@ function showSalesReport() {
     const totalOrders = mockData.orders.length;
     const avgOrderValue = totalRevenue / totalOrders;
     
-    alert(`Sales Report:\n\nTotal Revenue: $${totalRevenue.toFixed(2)}\nTotal Orders: ${totalOrders}\nAverage Order Value: $${avgOrderValue.toFixed(2)}\n\nThis would show detailed charts and graphs in a real application.`);
+    alert(`Sales Report:\n\nTotal Revenue: RR{totalRevenue.toFixed(2)}\nTotal Orders: R{totalOrders}\nAverage Order Value: RR{avgOrderValue.toFixed(2)}\n\nThis would show detailed charts and graphs in a real application.`);
 }
 
 function showInventoryReport() {
@@ -408,7 +408,7 @@ function showInventoryReport() {
     const lowStockCount = mockData.products.filter(p => p.stock < 10).length;
     const totalStock = mockData.products.reduce((sum, p) => sum + p.stock, 0);
     
-    alert(`Inventory Report:\n\nTotal Products: ${totalProducts}\nLow Stock Items: ${lowStockCount}\nTotal Units in Stock: ${totalStock}\n\nThis would show detailed inventory analytics in a real application.`);
+    alert(`Inventory Report:\n\nTotal Products: R{totalProducts}\nLow Stock Items: R{lowStockCount}\nTotal Units in Stock: R{totalStock}\n\nThis would show detailed inventory analytics in a real application.`);
 }
 
 function showCustomerReport() {
@@ -416,7 +416,7 @@ function showCustomerReport() {
     const totalSpent = Object.values(mockData.users).filter(u => u.role === 'buyer').reduce((sum, u) => sum + u.totalSpent, 0);
     const avgSpentPerCustomer = totalSpent / totalCustomers;
     
-    alert(`Customer Report:\n\nTotal Customers: ${totalCustomers}\nTotal Revenue from Customers: $${totalSpent.toFixed(2)}\nAverage Spent per Customer: $${avgSpentPerCustomer.toFixed(2)}\n\nThis would show detailed customer analytics in a real application.`);
+    alert(`Customer Report:\n\nTotal Customers: R{totalCustomers}\nTotal Revenue from Customers: RR{totalSpent.toFixed(2)}\nAverage Spent per Customer: RR{avgSpentPerCustomer.toFixed(2)}\n\nThis would show detailed customer analytics in a real application.`);
 }
 
 function showPerformanceReport() {
@@ -425,8 +425,8 @@ function showPerformanceReport() {
 
 function showNotifications() {
     const notifications = mockData.notifications;
-    const notificationList = notifications.map(n => `${n.message} (${n.time})`).join('\n');
-    alert(`Notifications:\n\n${notificationList}\n\nThis would show a notifications panel in a real application.`);
+    const notificationList = notifications.map(n => `R{n.message} (R{n.time})`).join('\n');
+    alert(`Notifications:\n\nR{notificationList}\n\nThis would show a notifications panel in a real application.`);
 }
 
 function showSystemSettings() {
@@ -454,13 +454,13 @@ function capitalizeFirst(string) {
 function showNotification(message, type = 'info') {
     // Simple notification system for prototype
     const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
+    notification.className = `notification notification-R{type}`;
     notification.textContent = message;
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
-        background: ${type === 'success' ? '#4CAF50' : '#2196F3'};
+        background: R{type === 'success' ? '#4CAF50' : '#2196F3'};
         color: white;
         padding: 15px 20px;
         border-radius: 4px;

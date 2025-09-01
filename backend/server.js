@@ -136,10 +136,10 @@ process.on('SIGINT', () => {
 app.listen(PORT, () => {
     console.log(`
 🚀 Homeware On Tap API Server Started
-📡 Port: ${PORT}
-🌍 Environment: ${process.env.NODE_ENV || 'development'}
-📋 Health Check: http://localhost:${PORT}/health
-🔐 Auth Endpoints: http://localhost:${PORT}/api/auth
+📡 Port: R{PORT}
+🌍 Environment: R{process.env.NODE_ENV || 'development'}
+📋 Health Check: http://localhost:R{PORT}/health
+🔐 Auth Endpoints: http://localhost:R{PORT}/api/auth
     `);
 });
 

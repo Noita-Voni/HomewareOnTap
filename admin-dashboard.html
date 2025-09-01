@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Homeware On Tap</title>
+    <meta name="description" content="Admin panel for managing Homeware On Tap store">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header admin-header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/img/logo2.png" alt="Homeware On Tap" class="logo-image">
+                        <span class="logo-text">Homeware On Tap</span>
+                        <span class="admin-badge">Admin</span>
+                    </a>
+                </div>
+
+                <!-- Admin Navigation -->
+                <nav class="nav" data-nav>
+                    <ul class="nav-list">
+                        <li><a href="admin-dashboard.html" class="nav-link active">Dashboard</a></li>
+                        <li><a href="#" onclick="showProductManagement()" class="nav-link">Products</a></li>
+                        <li><a href="#" onclick="showOrderManagement()" class="nav-link">Orders</a></li>
+                        <li><a href="#" onclick="showCustomerManagement()" class="nav-link">Customers</a></li>
+                        <li><a href="index.html" class="nav-link">View Store</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Admin Actions -->
+                <div class="header-actions">
+                    <div class="admin-greeting">
+                        <span id="adminGreeting">Admin Panel</span>
+                    </div>
+                    
+                    <div class="admin-notifications">
+                        <button class="notification-btn" onclick="showNotifications()">
+                            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                            <span class="notification-badge">3</span>
+                        </button>
+                    </div>
+                    
+                    <button onclick="logout()" class="btn btn-outline">Logout</button>
+                    
+                    <button class="mobile-toggle" data-mobile-toggle aria-label="Toggle mobile menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="admin-dashboard">
+        <!-- Welcome Section -->
+        <section class="admin-hero">
+            <div class="container">
+                <div class="admin-hero-content">
+                    <h1>Admin Dashboard</h1>
+                    <p>Manage your Homeware On Tap store and monitor performance</p>
+                    <div class="admin-date">
+                        <span id="currentDate">September 1, 2025</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Content -->
+        <section class="admin-content">
+            <div class="container">
+                <!-- Key Metrics -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="metric-info">
+                            <h3>$12,450</h3>
+                            <p>Total Revenue</p>
+                            <span class="metric-change positive">+12.3%</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </div>
+                        <div class="metric-info">
+                            <h3>156</h3>
+                            <p>Total Orders</p>
+                            <span class="metric-change positive">+8.2%</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="metric-info">
+                            <h3>89</h3>
+                            <p>Total Customers</p>
+                            <span class="metric-change positive">+15.7%</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                            </svg>
+                        </div>
+                        <div class="metric-info">
+                            <h3>24</h3>
+                            <p>Products</p>
+                            <span class="metric-change neutral">Active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Admin Grid -->
+                <div class="admin-grid">
+                    <!-- Product Management -->
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3>Product Management</h3>
+                            <button class="btn btn-sm btn-primary" onclick="showAddProduct()">Add Product</button>
+                        </div>
+                        <div class="management-actions">
+                            <div class="action-item" onclick="showProductList()">
+                                <div class="action-icon">
+                                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                    </svg>
+                                </div>
+                                <div class="action-details">
+                                    <h4>Manage Products</h4>
+                                    <p>Edit, update, or remove products</p>
+                                </div>
+                            </div>
+
+                            <div class="action-item" onclick="showInventory()">
+                                <div class="action-icon">
+                                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                    </svg>
+                                </div>
+                                <div class="action-details">
+                                    <h4>Inventory Status</h4>
+                                    <p>Check stock levels and alerts</p>
+                                </div>
+                            </div>
+
+                            <div class="action-item" onclick="showCategories()">
+                                <div class="action-icon">
+                                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                                    </svg>
+                                </div>
+                                <div class="action-details">
+                                    <h4>Categories</h4>
+                                    <p>Manage product categories</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Management -->
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3>Recent Orders</h3>
+                            <a href="#" onclick="showOrderManagement()" class="view-all-link">View All</a>
+                        </div>
+                        <div class="orders-table">
+                            <div class="order-row header">
+                                <div class="order-id">Order ID</div>
+                                <div class="customer">Customer</div>
+                                <div class="amount">Amount</div>
+                                <div class="status">Status</div>
+                            </div>
+                            <div class="order-row">
+                                <div class="order-id">#HOT1005</div>
+                                <div class="customer">john@email.com</div>
+                                <div class="amount">$89.00</div>
+                                <div class="status status-pending">Pending</div>
+                            </div>
+                            <div class="order-row">
+                                <div class="order-id">#HOT1004</div>
+                                <div class="customer">sarah@email.com</div>
+                                <div class="amount">$123.45</div>
+                                <div class="status status-shipped">Shipped</div>
+                            </div>
+                            <div class="order-row">
+                                <div class="order-id">#HOT1003</div>
+                                <div class="customer">mike@email.com</div>
+                                <div class="amount">$67.99</div>
+                                <div class="status status-delivered">Delivered</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Customer Management -->
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3>Customer Management</h3>
+                        </div>
+                        <div class="customer-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">New This Week</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">67</span>
+                                <span class="stat-label">Active Customers</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">$89.50</span>
+                                <span class="stat-label">Avg. Order Value</span>
+                            </div>
+                        </div>
+                        <div class="customer-actions">
+                            <button class="btn btn-secondary" onclick="showCustomers()">View All Customers</button>
+                            <button class="btn btn-secondary" onclick="showReports()">Customer Reports</button>
+                        </div>
+                    </div>
+
+                    <!-- System Alerts -->
+                    <div class="admin-card alerts">
+                        <div class="card-header">
+                            <h3>System Alerts</h3>
+                        </div>
+                        <div class="alerts-list">
+                            <div class="alert-item warning">
+                                <div class="alert-icon">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.664-.833-2.464 0L4.34 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                                    </svg>
+                                </div>
+                                <div class="alert-content">
+                                    <h4>Low Stock Alert</h4>
+                                    <p>Glass Bottles: Only 5 units remaining</p>
+                                </div>
+                            </div>
+
+                            <div class="alert-item info">
+                                <div class="alert-icon">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="alert-content">
+                                    <h4>New Orders</h4>
+                                    <p>3 new orders received today</p>
+                                </div>
+                            </div>
+
+                            <div class="alert-item success">
+                                <div class="alert-icon">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                                <div class="alert-content">
+                                    <h4>System Update</h4>
+                                    <p>All systems running smoothly</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Reports -->
+                    <div class="admin-card">
+                        <div class="card-header">
+                            <h3>Quick Reports</h3>
+                        </div>
+                        <div class="reports-grid">
+                            <button class="report-btn" onclick="showSalesReport()">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                </svg>
+                                <span>Sales Report</span>
+                            </button>
+
+                            <button class="report-btn" onclick="showInventoryReport()">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                                </svg>
+                                <span>Inventory Report</span>
+                            </button>
+
+                            <button class="report-btn" onclick="showCustomerReport()">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                                <span>Customer Report</span>
+                            </button>
+
+                            <button class="report-btn" onclick="showPerformanceReport()">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                                </svg>
+                                <span>Performance</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer admin-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Homeware On Tap Admin</h3>
+                    <p>Administrative panel for store management and analytics.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Admin Tools</h4>
+                    <ul>
+                        <li><a href="#" onclick="showProductManagement()">Product Management</a></li>
+                        <li><a href="#" onclick="showOrderManagement()">Order Management</a></li>
+                        <li><a href="#" onclick="showCustomers()">Customer Management</a></li>
+                        <li><a href="#" onclick="showReports()">Reports & Analytics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Store Links</h4>
+                    <ul>
+                        <li><a href="index.html">View Store</a></li>
+                        <li><a href="products.html">Products Page</a></li>
+                        <li><a href="about.html">About Page</a></li>
+                        <li><a href="why.html">Why Page</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>System</h4>
+                    <ul>
+                        <li><a href="#" onclick="showSystemSettings()">Settings</a></li>
+                        <li><a href="#" onclick="showBackup()">Backup Data</a></li>
+                        <li><a href="#" onclick="showLogs()">System Logs</a></li>
+                        <li><a href="#" onclick="logout()">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Homeware On Tap - Admin Panel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - Homeware On Tap</title>
+    <meta name="description" content="Manage your orders and account with Homeware On Tap">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/img/logo2.png" alt="Homeware On Tap" class="logo-image">
+                        <span class="logo-text">Homeware On Tap</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav" data-nav>
+                    <ul class="nav-list">
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                        <li><a href="products.html" class="nav-link">Products</a></li>
+                        <li><a href="why.html" class="nav-link">Why HomewareOnTap</a></li>
+                        <li><a href="buyer-dashboard.html" class="nav-link">Dashboard</a></li>
+                    </ul>
+                </nav>
+
+                <!-- Cart & Mobile Toggle -->
+                <div class="header-actions">
+                    <!-- User Greeting -->
+                    <div class="user-greeting">
+                        <span id="userGreeting">Welcome back!</span>
+                    </div>
+                    
+                    <button class="cart-btn" data-cart-open aria-label="Open cart">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5-6M20 13v6a2 2 0 01-2 2H6a2 2 0 01-2-2v-6m16 0V9a2 2 0 00-2-2H6a2 2 0 00-2-2v4"></path>
+                        </svg>
+                        <span class="cart-badge" data-cart-count>0</span>
+                    </button>
+                    
+                    <button onclick="logout()" class="btn btn-outline">Logout</button>
+                    
+                    <button class="mobile-toggle" data-mobile-toggle aria-label="Toggle mobile menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard">
+        <!-- Welcome Section -->
+        <section class="dashboard-hero">
+            <div class="container">
+                <div class="dashboard-hero-content">
+                    <h1>Welcome back, <span id="userName">Customer</span>!</h1>
+                    <p>Manage your orders, update your profile, and discover new homeware essentials</p>
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <span class="stat-label">Recent Orders</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">$267.44</span>
+                            <span class="stat-label">Total Spent</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Wishlist Items</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Content -->
+        <section class="dashboard-content">
+            <div class="container">
+                <div class="dashboard-grid">
+                    <!-- Recent Orders -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Recent Orders</h3>
+                            <a href="#" class="view-all-link">View All</a>
+                        </div>
+                        <div class="orders-list" id="recentOrders">
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <div class="order-number">#HOT1001</div>
+                                    <div class="order-date">September 1, 2025</div>
+                                </div>
+                                <div class="order-details">
+                                    <div class="order-product">Kitchen Knife Set - Professional Grade</div>
+                                    <div class="order-price">$89.99</div>
+                                </div>
+                                <div class="order-status status-delivered">Delivered</div>
+                            </div>
+                            
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <div class="order-number">#HOT1002</div>
+                                    <div class="order-date">August 28, 2025</div>
+                                </div>
+                                <div class="order-details">
+                                    <div class="order-product">Ceramic Dinner Plates Set</div>
+                                    <div class="order-price">$45.50</div>
+                                </div>
+                                <div class="order-status status-shipped">Shipped</div>
+                            </div>
+                            
+                            <div class="order-item">
+                                <div class="order-info">
+                                    <div class="order-number">#HOT1003</div>
+                                    <div class="order-date">August 25, 2025</div>
+                                </div>
+                                <div class="order-details">
+                                    <div class="order-product">Stainless Steel Cookware Set</div>
+                                    <div class="order-price">$132.95</div>
+                                </div>
+                                <div class="order-status status-pending">Processing</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        <div class="quick-actions">
+                            <a href="products.html" class="action-btn">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                </svg>
+                                <span>Continue Shopping</span>
+                            </a>
+                            
+                            <a href="#" class="action-btn" onclick="showTrackOrder()">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Track Orders</span>
+                            </a>
+                            
+                            <a href="#" class="action-btn" onclick="showProfile()">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                                </svg>
+                                <span>Update Profile</span>
+                            </a>
+                            
+                            <a href="#" class="action-btn" onclick="showWishlist()">
+                                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                </svg>
+                                <span>Wishlist</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Account Information -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Account Information</h3>
+                        </div>
+                        <div class="account-info">
+                            <div class="info-item">
+                                <label>Email:</label>
+                                <span id="userEmail">user@email.com</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Member Since:</label>
+                                <span id="memberSince">Today</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Account Status:</label>
+                                <span class="status-active">Active</span>
+                            </div>
+                            <div class="info-item">
+                                <label>Loyalty Points:</label>
+                                <span class="loyalty-points">267 points</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommended Products -->
+                    <div class="dashboard-card recommendations">
+                        <div class="card-header">
+                            <h3>Recommended for You</h3>
+                        </div>
+                        <div class="recommended-products">
+                            <div class="product-recommendation">
+                                <img src="assets/img/glassbottles.png" alt="Glass Storage Bottles" class="product-image">
+                                <div class="product-info">
+                                    <h4>Glass Storage Bottles</h4>
+                                    <p class="product-price">$23.45</p>
+                                    <button class="btn btn-sm btn-primary">Add to Cart</button>
+                                </div>
+                            </div>
+                            
+                            <div class="product-recommendation">
+                                <img src="assets/img/bamboostorage.png" alt="Bamboo Storage Containers" class="product-image">
+                                <div class="product-info">
+                                    <h4>Bamboo Storage Set</h4>
+                                    <p class="product-price">$67.99</p>
+                                    <button class="btn btn-sm btn-primary">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Homeware On Tap</h3>
+                    <p>Quality homeware delivered to your door. Transform your living space with our curated collection.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="why.html">Why HomewareOnTap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Account</h4>
+                    <ul>
+                        <li><a href="buyer-dashboard.html">Dashboard</a></li>
+                        <li><a href="#" onclick="showTrackOrder()">Track Orders</a></li>
+                        <li><a href="#" onclick="showProfile()">My Profile</a></li>
+                        <li><a href="#" onclick="logout()">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.611-3.197-1.559-.748-.948-1.111-2.156-1.014-3.378.194-2.447 2.317-4.37 4.748-4.302 1.297.036 2.517.631 3.266 1.588.748.957 1.111 2.175 1.014 3.407-.194 2.447-2.317 4.37-4.748 4.302-.023-.001-.046-.003-.069-.058z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Homeware On Tap. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

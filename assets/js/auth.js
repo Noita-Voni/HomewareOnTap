@@ -17,6 +17,51 @@ class AuthManager {
         }
     }
 
+    // Role determination for prototype (no database)
+    determineUserRole(email) {
+        const adminEmails = [
+            'admin@homewareontap.com',
+            'vukile@admin.com',
+            'manager@homewareontap.com',
+            'admin@demo.com'
+        ];
+        
+        return adminEmails.includes(email.toLowerCase()) ? 'admin' : 'buyer';
+    }
+
+    // Simple authentication for prototype
+    authenticateUser(email, password) {
+        // Simple validation - for prototype only
+        if (email && password.length >= 6) {
+            const userRole = this.determineUserRole(email);
+            
+            const userData = {
+                email: email,
+                role: userRole,
+                name: email.split('@')[0],
+                loginTime: new Date().toISOString(),
+                id: Date.now() // Mock ID
+            };
+            
+            // Store in localStorage for prototype
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+            localStorage.setItem('authToken', 'mock-token-' + Date.now());
+            
+            return { success: true, user: userData };
+        }
+        
+        return { success: false, message: 'Invalid email or password' };
+    }
+
+    // Role-based redirect
+    redirectBasedOnRole(userRole) {
+        if (userRole === 'admin') {
+            window.location.href = 'admin-dashboard.html';
+        } else {
+            window.location.href = 'buyer-dashboard.html';
+        }
+    }
+
     setupEventListeners() {
         // Setup signup form
         const signupForm = document.getElementById('signup-form');
@@ -144,31 +189,23 @@ class AuthManager {
                 return;
             }
 
-            // Send login request
-            const response = await fetch(`${this.apiUrl}/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(loginData)
-            });
+            // Use prototype authentication (no backend)
+            const authResult = this.authenticateUser(loginData.email, loginData.password);
 
-            const data = await response.json();
-
-            if (data.success) {
+            if (authResult.success) {
                 // Store authentication data
-                this.setAuthData(data.data.token, data.data.user);
+                this.setAuthData('mock-token-' + Date.now(), authResult.user);
                 
                 // Show success message
-                this.showSuccessMessage(`Welcome back, ${data.data.user.firstName}! 🏠`);
+                this.showSuccessMessage(`Welcome back, ${authResult.user.name}! 🏠`);
                 
-                // Redirect to home page
+                // Role-based redirect
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    this.redirectBasedOnRole(authResult.user.role);
                 }, 1500);
                 
             } else {
-                this.showErrorMessage(data.message || 'Login failed');
+                this.showErrorMessage(authResult.message || 'Login failed');
             }
 
         } catch (error) {
@@ -369,8 +406,34 @@ class AuthManager {
     }
 }
 
+// Utility functions for prototype
+function getCurrentUser() {
+    return JSON.parse(localStorage.getItem('currentUser') || 'null');
+}
+
+function isLoggedIn() {
+    return localStorage.getItem('currentUser') !== null;
+}
+
+function requireLogin() {
+    if (!isLoggedIn()) {
+        window.location.href = 'login.html';
+        return false;
+    }
+    return true;
+}
+
+function logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('authToken');
+    window.location.href = 'index.html';
+}
+
 // Initialize authentication manager
 const authManager = new AuthManager();
 
 // Expose globally for console debugging
 window.authManager = authManager;
+window.getCurrentUser = getCurrentUser;
+window.isLoggedIn = isLoggedIn;
+window.logout = logout;

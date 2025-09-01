@@ -124,19 +124,6 @@
         </div>
     </main>
 
-    <!-- Login Success Modal -->
-    <div class="modal" id="loginSuccessModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Welcome Back! 🎉</h2>
-            </div>
-            <div class="modal-body">
-                <p>You have successfully signed in to your account.</p>
-                <p>Redirecting you to continue shopping...</p>
-            </div>
-        </div>
-    </div>
-
     <!-- Cart Drawer -->
     <div class="cart-drawer" data-cart-drawer>
         <div class="cart-overlay" data-cart-overlay></div>
@@ -165,55 +152,26 @@
     <!-- Scripts -->
     <script src="assets/js/cart.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/auth.js"></script>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const loginForm = document.getElementById('loginForm');
-            const loginModal = document.getElementById('loginSuccessModal');
             
             loginForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const formData = new FormData(loginForm);
-                const email = formData.get('email');
-                const password = formData.get('password');
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
                 
-                // Basic validation
-                if (!email || !password) {
-                    alert('Please fill in all fields');
-                    return;
-                }
-                
-                // Check if user exists (in real app, this would be server-side)
-                const existingUserData = localStorage.getItem('homewareUserData');
-                if (existingUserData) {
-                    const userData = JSON.parse(existingUserData);
-                    
-                    if (userData.email === email) {
-                        // Update login status
-                        userData.lastLogin = new Date().toISOString();
-                        localStorage.setItem('homewareUserData', JSON.stringify(userData));
-                        
-                        // Show success modal
-                        loginModal.style.display = 'flex';
-                        
-                        // Redirect after 2 seconds
-                        setTimeout(() => {
-                            // Check if user came from cart
-                            const urlParams = new URLSearchParams(window.location.search);
-                            const returnUrl = urlParams.get('return') || 'index.html';
-                            window.location.href = returnUrl;
-                        }, 2000);
-                    } else {
-                        alert('Invalid email or password');
-                    }
+                // Use our new authentication system
+                if (handleLogin(email, password)) {
+                    // handleLogin will redirect automatically based on role
                 } else {
-                    alert('No account found with this email. Please sign up first.');
+                    alert('Please fill in all fields');
                 }
             });
         });
     </script>
-    
-    <!-- Authentication Script -->
-    <script src="assets/js/auth.js"></script>
 </body>
 </html>
